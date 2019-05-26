@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>时钟罗盘</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background-color: rgba(20, 2, 31, 0.623);
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .second,
+        .mniute {
+            position: relative;
+            margin: 0 auto;
+            width: 900px;
+            height: 900px;
+            font-family: '楷体';
+            /* background-color: rgba(66, 185, 175, 0.658); */
+            border-radius: 50%;
+            color: #fff;
+        }
+
+        .second li {
+            width: 50%;
+            text-align: right;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 50%;
+            font-size: 18px;
+            font-weight: 700;
+            /* background-color: rgba(233, 129, 129, 0.459); */
+            transform-origin: left center;
+        }
+        .mniute li {
+            width: 25%;
+            text-align: right;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 50%;
+            font-size: 18px;
+            font-weight: 700;
+            /* background-color: rgba(233, 129, 129, 0.459); */
+            transform-origin: left center;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="second"> </ul>
+    <ul class="mniute"></ul>
+    <script>
+        var arr = ['零','壹','贰','叁','肆','伍','陆','柒','捌','玖','拾','拾壹','拾贰','拾叁','拾肆','拾伍','拾陆','拾柒','拾捌','拾玖','贰拾','贰拾壹','贰拾贰','贰拾叁','贰拾肆','贰拾伍','贰拾陆','贰拾柒','贰拾捌','贰拾玖','叁拾','叁拾壹','叁拾贰','叁拾叁','叁拾肆','叁拾伍','叁拾陆','叁拾柒','叁拾捌','叁拾玖','肆拾','肆拾壹','肆拾贰','肆拾叁','肆拾肆','肆拾伍','肆拾陆','肆拾柒','肆拾捌','肆拾玖','伍拾','伍拾壹','伍拾贰','伍拾叁','伍拾肆','伍拾伍','伍拾陆','伍拾柒','伍拾捌','伍拾玖']
+        var second = document.querySelector('.second')
+        var num = 0;
+        var timer = setInterval(function () {
+            var li = document.createElement('li');
+            // num = num < 10 ? '0' + num : num;
+            li.innerHTML = '第' + arr[num] + '秒';
+            second.appendChild(li);
+            second.children[num].style.transform = 'rotateZ(' + num * 6 + 'deg)';
+            num++;
+            if (num == 60) {
+                clearInterval(timer);
+                var s = 0;
+                setInterval(function () {
+                    s--;
+                    second.style.transform = 'rotateZ(' + s * 6 + 'deg)';
+
+                }, 1000)
+            }
+        }, 100)
+        var mniute = document.querySelector('.mniute')
+        var m = 0;
+        var timerm = setInterval(function () {
+            var lii = document.createElement('li');
+            // num = num < 10 ? '0' + num : num;
+            lii.innerHTML = '第' + arr[m] + '分';
+            mniute.appendChild(lii);
+            mniute.children[m].style.transform = 'rotateZ(' + m * 6 + 'deg)';
+            m++;
+            if (m == 60) {
+                clearInterval(timerm);
+                var n = 0;
+                setInterval(function () {
+                    n--;
+                    mniute.style.transform = 'rotateZ(' + n * 6 + 'deg)';
+
+                }, 60000)
+            }
+        }, 100)
+    </script>
+</body>
+
+</html>
